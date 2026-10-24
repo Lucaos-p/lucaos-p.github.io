@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Block with Video</title>
+<meta name="description" content="A responsive hero block with video, created with HTML and TailwindCSS.">
+<link rel="preload" href="assets/videos/hero-still.jpg" as="image">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+        html { scroll-behavior: smooth; }
+        img { max-width: 100%; height: auto; }
+        a { @apply underline underline-offset-4 decoration-2; }
+        a:hover { @apply decoration-dotted; }
+        a:focus-visible, button:focus-visible { outline: 3px solid currentColor; outline-offset: 5px; }
+        footer { @apply px-[5%] md:px-[20%] py-8 bg-slate-950 text-white text-lg leading-relaxed; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+header { @apply relative isolate overflow-hidden min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center px-6 md:px-[12%] lg:px-[20%] py-16 text-center bg-slate-950; }
+header h1 { @apply relative z-10 text-4xl md:text-7xl lg:text-8xl text-white font-bold tracking-tight mb-6 leading-tight; }
+header h2 { @apply relative z-10 text-2xl md:text-4xl text-white leading-snug; }
+header h1 { animation: enter-down 700ms ease-out both; }
+header h2 { animation: enter-left 700ms 150ms ease-out both; }
+@keyframes enter-down { from { opacity: 0; transform: translateY(-25px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes enter-left { from { opacity: 0; transform: translateX(-25px); } to { opacity: 1; transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { header h1, header h2 { animation: none; } }
+header video { @apply absolute inset-0 w-full h-full object-cover; } header::before { content: ''; @apply absolute inset-0 z-[1] bg-linear-to-b from-blue-950/85 to-pink-950/75; } button { @apply bg-white text-slate-950 rounded px-4 py-2 cursor-pointer; }</style>
+<!-- Lucas da Silva Pinheiro 82752 -->
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
+</head>
+<body>
+<a href="#main-content" class="sr-only focus:not-sr-only focus:block focus:p-4 focus:bg-white focus:text-slate-950">Skip to main content</a>
+<header><video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/videos/hero-still.jpg" aria-hidden="true"><source src="assets/videos/hero-video.mp4" type="video/mp4"></video><h1>Education for Life</h1><h2>A brighter career and future</h2></header>
+<main id="main-content"><section class="px-6 md:px-[20%] py-10 bg-slate-50 text-slate-900"><h2 class="text-2xl font-semibold mb-4">Hero block with video</h2><p class="text-lg leading-relaxed">An exercise in responsive typography, spacing, background video and layered content.</p><p class="mt-5"><button type="button" id="toggle-video" aria-controls="hero-video">Pause background video</button></p></section></main>
+<footer><nav aria-label="Page navigation"><a href="../index.html">Return to Home</a> · <a href="hero-text.html">Text</a> · <a href="hero-image.html">Image</a> · <a href="hero-video.html">Video</a></nav></footer>
+<script>
+const video = document.getElementById('hero-video');
+const toggle = document.getElementById('toggle-video');
+const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+function syncLabel() { toggle.textContent = video.paused ? 'Play background video' : 'Pause background video'; }
+if (preference.matches) { video.autoplay = false; video.pause(); }
+video.addEventListener('play', syncLabel);
+video.addEventListener('pause', syncLabel);
+toggle.addEventListener('click', async () => {
+    if (video.paused) { try { await video.play(); } catch { toggle.textContent = 'Video unavailable'; } }
+    else { video.pause(); }
+});
+preference.addEventListener('change', event => { if (event.matches) video.pause(); });
+syncLabel();
+</script>
+</body>
+</html>

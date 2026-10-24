@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="description" content="Lucas Pinheiro's Front-end Web Development exercises and classroom projects at Dorset College.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to my Webpage</title>
+    <title>Lucas Pinheiro | Front-end Web Development</title>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RK73EBSPG1"></script>
@@ -11,7 +12,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-RK73EBSPG1');
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -19,48 +19,75 @@
         header {
     @apply pt-8 px-[9%] pb-[42px] md:py-[3%] md:px-[20%];
 }
-
 section {   
     @apply pt-8 px-[9%] pb-[42px] md:py-[3%] md:px-[20%];
 }
 section h2 {   
     @apply mt-8;
 }
-
 section h3 {   
     @apply mt-6;
 }
-
 section p {   
     @apply mb-4;
 }
 
+    
+        html { scroll-behavior: smooth; }
+        img { max-width: 100%; height: auto; }
+        a { @apply underline underline-offset-4 decoration-2; }
+        a:hover { @apply decoration-dotted; }
+        a:focus-visible, button:focus-visible { outline: 3px solid currentColor; outline-offset: 5px; }
+        footer { @apply px-[5%] md:px-[20%] py-8 bg-slate-950 text-white text-lg leading-relaxed; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-    </style>
+body { @apply bg-slate-50 text-slate-900 font-sans; }
+header { @apply bg-slate-950 text-white; }
+header h1 { @apply text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-5; }
+header h2 { @apply text-xl font-semibold uppercase tracking-widest mb-4 text-sky-200; }
+header p { @apply text-lg md:text-xl leading-relaxed mb-6; }
+header img { @apply w-full rounded-xl; }
+section h2 { @apply text-3xl font-bold tracking-tight mb-6; }
+section h3 { @apply text-xl font-semibold italic mb-4; }
+section p { @apply text-lg leading-relaxed; }
+section a { @apply text-blue-800 hover:text-blue-600; }
+</style>
 
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">    
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">    
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">    
+<link rel="manifest" href="assets/img/favicons/site.webmanifest">
+
+    <!-- Lucas da Silva Pinheiro 82752 -->
 </head>
 <body>
-
+<a href="#main-content" class="sr-only focus:not-sr-only focus:block focus:p-4 focus:bg-white focus:text-slate-950">Skip to main content</a>
     <header>
         <h1> Lucas Pinheiro</h1>
         <h2>About me</h2>
-        <p> Welcome to my personal webpage.</p>
-        <img src="assets/img/plants.jpg" alt="Lucas Pinheiro: Web Designer">
-        
+        <p>Welcome to my personal webpage. I am studying Computer Science at Dorset College and learning to build responsive websites with HTML and TailwindCSS.</p>
+        <img src="assets/img/frontend-developer.jpg" alt="A developer working with code on a laptop" width="1129" height="750">
     </header>
-    <main>
+    <main id="main-content">
         <section>
-    <h2>Profects</h2>
-    <p><a href="exercises/soccer.html">Soccer Website</a></p>
-    <p><a href="exercises/laptop.html">Laptop Website</a></p>
+    <h2>CA1 Exercises</h2>
     <p><a href="exercises/page-1.html">A Tale of Two Cities Website</a></p>
     <p><a href="exercises/page-2.html">Purple Rain</a></p>
     <p><a href="exercises/page-3.html">Web Page with Sections</a></p>
     <p><a href="exercises/page-4.html">Vincent van Gogh</a></p> 
     <p><a href="exercises/page-5.html">Irish Tourism</a></p>
-    <p><a href="exercises/hair.html">Bloom & Grace Women's Hair Salons</a></p>
-        </section>
-    </main>
+        <h3>Hero Blocks</h3>
+    <p><a href="exercises/hero-text.html">Hero block with text</a></p>
+    <p><a href="exercises/hero-image.html">Hero block with image</a></p>
+    <p><a href="exercises/hero-video.html">Hero block with video</a></p>
+</section>
+    <section><h2>More Classroom Projects</h2>
+<p><a href="exercises/soccer.html">Soccer Website</a></p>
+<p><a href="exercises/laptop.html">Laptop Website</a></p>
+<p><a href="exercises/hair.html">Bloom & Grace Women's Hair Salons</a></p>
+</section>
+</main>
     
+<footer><p>Lucas da Silva Pinheiro · Front-end Web Development · CA1</p></footer>
 </body>
 </html>

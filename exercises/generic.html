@@ -6,65 +6,162 @@
     <meta name="description" content="Four influential hardcore punk bands and their standout albums from 2010 to 2019.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Lucas da Silva Pinheiro 82752 -->
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<style type="text/tailwindcss">
-html { scroll-behavior: smooth; }
-body { @apply font-sans text-slate-900 bg-slate-50; }
-header { @apply px-6 md:px-[12%] lg:px-[20%] py-12 md:py-16; }
-header h1 { @apply text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-5; }
-header h2, header p { @apply text-xl md:text-2xl leading-relaxed; }
-header nav { @apply mt-8 flex flex-wrap gap-x-6 gap-y-3 text-lg; }
-section { @apply px-6 md:px-[12%] lg:px-[20%] py-10 md:py-14 border-b border-slate-200 scroll-mt-6; }
-section h2 { @apply text-3xl md:text-4xl font-semibold tracking-tight mb-5; }
-section p { @apply text-lg md:text-xl leading-relaxed mb-5; }
-section p:last-child { @apply mb-0; }
-a { @apply underline underline-offset-4 decoration-2; }
-a:hover { @apply decoration-dotted; }
-main a { @apply text-blue-800 hover:text-blue-600; }
-a:focus-visible { outline: 3px solid currentColor; outline-offset: 5px; }
-footer { @apply px-6 md:px-[12%] lg:px-[20%] py-8 bg-slate-950 text-white text-lg; }
-footer nav { @apply flex flex-wrap gap-x-6 gap-y-3; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>
+    <style>
+        :root { color-scheme: dark; --ink: #f6f0e5; --muted: #cbc2b7; --accent: #ffca46; --line: #534943; --cover-size: 22rem; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #171413; color: var(--ink); font: 1rem/1.6 system-ui, sans-serif; }
+        a { color: inherit; text-underline-offset: .22em; }
+        a:hover { color: var(--accent); }
+        a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+        .skip-link { position: absolute; top: 0; left: 1rem; z-index: 1; padding: .5rem; background: #171413; }
+        .skip-link:not(:focus) { clip-path: inset(50%); }
+        .wrap { width: min(100% - 2.5rem, 68rem); margin-inline: auto; }
+        .masthead { background: #111; border-top: 6px solid #e84b37; border-bottom: 1px solid var(--line); }
+        .masthead .wrap, footer .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem 1.5rem; padding-block: 1rem; }
+        .brand, h1, h2 { font-family: Impact, 'Arial Narrow', system-ui, sans-serif; font-weight: 900; text-transform: uppercase; }
+        .brand { font-size: 1.7rem; letter-spacing: .025em; }
+        .label, .record-button { font-size: .82rem; font-weight: 750; text-transform: uppercase; letter-spacing: .12em; }
+        .label { color: var(--accent); }
+        .feature { background: linear-gradient(120deg, #4a1b18, #171413 75%); border-bottom: 1px solid var(--line); padding-block: clamp(2rem, 7vw, 5rem) 2rem; }
+        h1 { font-size: clamp(3rem, 9vw, 7.5rem); line-height: .95; letter-spacing: -.025em; margin: .3em 0 .22em; }
+        .feature p { max-width: 48ch; color: var(--muted); font-size: clamp(1rem, 2vw, 1.25rem); }
+        .feature-layout { display: grid; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; }
+        .cover-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; width: min(100%, 23rem); }
+        .cover-index a { display: block; min-width: 0; text-decoration: none; }
+        .cover-index img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+        .cover-index span { display: block; margin-top: .3rem; font-weight: 700; font-size: .875rem; }
+        .cover-index a:hover img, .cover-index a:focus-visible img { outline: 2px solid var(--accent); outline-offset: -2px; }
+        @media (min-width: 60rem) {
+            .feature-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 23rem); }
+            .feature h1 { font-size: clamp(3.5rem, 6vw, 6rem); }
+        }
+        .record-button { display: inline-block; padding: .5rem .7rem; border: 1px solid #8c7970; text-decoration: none; }
+        .record-button:hover, .record-button:focus-visible { background: var(--accent); color: #171413; }
+        .album-section { display: grid; gap: 1.5rem; padding-block: clamp(2rem, 5vw, 3.5rem); border-bottom: 1px solid var(--line); scroll-margin-top: 1rem; }
+        .album-cover { width: min(100%, var(--cover-size)); margin: 0; }
+        .album-cover img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+        figcaption, .sources { color: var(--muted); font-size: 1rem; line-height: 1.55; }
+        figcaption { margin-top: .45rem; }
+        h2 { font-size: clamp(2.25rem, 6vw, 4rem); line-height: 1; letter-spacing: -.02em; margin: 0; }
+        .col-text { min-width: 0; }
+        .col-text p { max-width: 66ch; margin: 0 0 1rem; line-height: 1.75; }
+        .col-text .album-meta { margin: .45rem 0 1.1rem; color: var(--accent); font-size: 1.15rem; font-weight: 700; line-height: 1.4; }
+        .col-text .sources { line-height: 1.65; }
+        .listen-link { margin-bottom: 1rem; }
+        footer { background: #111; }
+        footer nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+        @media (min-width: 48rem) { .album-section { grid-template-columns: min(36%, var(--cover-size)) minmax(0, 1fr); gap: 2.5rem; align-items: start; } }
+    </style>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
 </head>
 <body id="top-of-page">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:block focus:p-4 focus:bg-white focus:text-slate-950">Skip to main content</a>
-    <header class="bg-slate-950 text-white">
-        <h1>Hardcore Punk in the 2010s</h1>
-        <p>Four bands and four records that took hardcore in different directions between 2010 and 2019.</p>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="masthead">
+            <div class="wrap"><span class="brand">Pit Notes</span><span class="label">Music / Hardcore</span></div>
+        </div>
+        <div class="feature">
+            <div class="wrap feature-layout">
+                <div class="feature-copy">
+                    <span class="label">The decade in four records</span>
+                    <h1>Hardcore Punk<br>in the 2010s</h1>
+                    <p>Four bands and four records that took hardcore in different directions between 2010 and 2019.</p>
+                </div>
+                <nav class="cover-index" aria-label="Jump to a band">
+                    <a href="#ceremony">
+                        <img src="assets/img/ceremony-rohnert-park.jpg" width="700" height="700" alt="">
+                        <span>Ceremony</span>
+                    </a>
+                    <a href="#power-trip">
+                        <img src="assets/img/power-trip-nightmare-logic.jpg" width="700" height="700" alt="">
+                        <span>Power Trip</span>
+                    </a>
+                    <a href="#turnstile">
+                        <img src="assets/img/turnstile-time-and-space.jpg" width="700" height="700" alt="">
+                        <span>Turnstile</span>
+                    </a>
+                    <a href="#knocked-loose">
+                        <img src="assets/img/knocked-loose-a-different-shade-of-blue.jpg" width="700" height="700" alt="">
+                        <span>Knocked Loose</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
     </header>
-    <main id="main-content">
-        <section>
-            <h2>Ceremony</h2>
-            <p>Ceremony came out of Rohnert Park, California, and built its reputation on short, abrasive songs. As the band moved toward post-punk later in the decade, it showed how a group rooted in hardcore could change its sound without losing its intensity.</p>
-            <p><strong><cite>Rohnert Park</cite> (2010).</strong> Brief bursts like “Back in '84” sit alongside longer, slower passages. That contrast gives the album room to explore suburban boredom and frustration without losing its bite.</p>
-            <p>Sources: <a href="https://bridge9.bandcamp.com/album/rohnert-park">Bridge Nine: album and release date</a>; <a href="https://themusic.com.au/reviews/ceremony-rohnert-park/vuLa0NPS1dQ/05-09-10">The Music: album review</a>; <a href="https://ceremonyrohnertpark.bandcamp.com/album/the-l-shaped-man">Ceremony: later change in sound</a>.</p>
+    <main class="wrap" id="main-content">
+        <section class="album-section" id="ceremony" aria-labelledby="ceremony-title">
+            <div class="col-visual">
+                <figure class="album-cover">
+                    <img src="assets/img/ceremony-rohnert-park.jpg" width="700" height="700" alt="Original album cover for Rohnert Park by Ceremony">
+                    <figcaption><a href="https://bridge9.bandcamp.com/album/rohnert-park">Cover source: Bridge Nine Records</a></figcaption>
+                </figure>
+            </div>
+            <div class="col-text">
+                <h2 id="ceremony-title">Ceremony</h2>
+                <p class="album-meta"><cite>Rohnert Park</cite> &middot; <time datetime="2010">2010</time></p>
+                <p>Ceremony came out of Rohnert Park, California, and built its reputation on short, abrasive songs. As the band moved toward post-punk later in the decade, it showed how a group rooted in hardcore could change its sound without losing its intensity.</p>
+                <p>Brief bursts like “Back in '84” sit alongside longer, slower passages. That contrast gives the album room to explore suburban boredom and frustration without losing its bite.</p>
+                <a class="record-button listen-link" href="https://bridge9.bandcamp.com/album/rohnert-park" aria-label="Listen to the album: Rohnert Park by Ceremony">Listen to the album</a>
+                <p class="sources">Sources: <a href="https://bridge9.bandcamp.com/album/rohnert-park">Bridge Nine: album and release date</a>; <a href="https://themusic.com.au/reviews/ceremony-rohnert-park/vuLa0NPS1dQ/05-09-10">The Music: album review</a>; <a href="https://ceremonyrohnertpark.bandcamp.com/album/the-l-shaped-man">Ceremony: later change in sound</a>.</p>
+            </div>
         </section>
-        <section>
-            <h2>Power Trip</h2>
-            <p>Power Trip came out of the Texas underground and built on the crossover sound of its debut, <cite>Manifest Decimation</cite>. By matching hardcore's direct delivery with thrash metal's fast riffs, the band made crossover a meeting point for punk and metal listeners.</p>
-            <p><strong><cite>Nightmare Logic</cite> (2017).</strong> “Executioner's Tax (Swing of the Axe)” captures what made the record stand out: a riff you can recognise immediately and a chorus built to be shouted back.</p>
-            <p>Sources: <a href="https://powertripsl.bandcamp.com/track/nightmare-logic">Power Trip: release date</a>; <a href="https://pitchfork.com/reviews/albums/22891-power-trip-nightmare-logic/">Pitchfork: album review</a>.</p>
+        <section class="album-section" id="power-trip" aria-labelledby="power-trip-title">
+            <div class="col-visual">
+                <figure class="album-cover">
+                    <img src="assets/img/power-trip-nightmare-logic.jpg" width="700" height="700" alt="Original album cover for Nightmare Logic by Power Trip">
+                    <figcaption><a href="https://powertripsl.bandcamp.com/album/nightmare-logic">Cover source: Power Trip on Bandcamp</a></figcaption>
+                </figure>
+            </div>
+            <div class="col-text">
+                <h2 id="power-trip-title">Power Trip</h2>
+                <p class="album-meta"><cite>Nightmare Logic</cite> &middot; <time datetime="2017">2017</time></p>
+                <p>Power Trip came out of the Texas underground and built on the crossover sound of its debut, <cite>Manifest Decimation</cite>. By matching hardcore's direct delivery with thrash metal's fast riffs, the band made crossover a meeting point for punk and metal listeners.</p>
+                <p>“Executioner's Tax (Swing of the Axe)” captures what made the record stand out: a riff you can recognise immediately and a chorus built to be shouted back.</p>
+                <a class="record-button listen-link" href="https://powertripsl.bandcamp.com/album/nightmare-logic" aria-label="Listen to the album: Nightmare Logic by Power Trip">Listen to the album</a>
+                <p class="sources">Sources: <a href="https://powertripsl.bandcamp.com/track/nightmare-logic">Power Trip: release date</a>; <a href="https://pitchfork.com/reviews/albums/22891-power-trip-nightmare-logic/">Pitchfork: album review</a>.</p>
+            </div>
         </section>
-        <section>
-            <h2>Turnstile</h2>
-            <p>Turnstile built a following in Baltimore's hardcore scene before moving from its independent debut, <cite>Nonstop Feeling</cite>, to Roadrunner Records. Its mix of mosh riffs and danceable grooves showed how hardcore could reach listeners outside the scene.</p>
-            <p><strong><cite>Time &amp; Space</cite> (2018).</strong> The record pairs sharp, fast songs with melodic detours like “Moon.” Kerrang! named it album of the year, recognising how naturally those different sounds fit together.</p>
-            <p>Sources: <a href="https://www.theguardian.com/music/2018/feb/23/turnstile-time-space-review-roadrunner">The Guardian: album review</a>; <a href="https://www.kerrang.com/the-50-albums-that-shook-2018/">Kerrang!: albums of the year</a>.</p>
+        <section class="album-section" id="turnstile" aria-labelledby="turnstile-title">
+            <div class="col-visual">
+                <figure class="album-cover">
+                    <img src="assets/img/turnstile-time-and-space.jpg" width="700" height="700" alt="Original album cover for Time &amp; Space by Turnstile">
+                    <figcaption><a href="https://turnstilehardcore.com/pages/music">Cover source: Turnstile official website</a></figcaption>
+                </figure>
+            </div>
+            <div class="col-text">
+                <h2 id="turnstile-title">Turnstile</h2>
+                <p class="album-meta"><cite>Time &amp; Space</cite> &middot; <time datetime="2018">2018</time></p>
+                <p>Turnstile built a following in Baltimore's hardcore scene before moving from its independent debut, <cite>Nonstop Feeling</cite>, to Roadrunner Records. Its mix of mosh riffs and danceable grooves showed how hardcore could reach listeners outside the scene.</p>
+                <p>The record pairs sharp, fast songs with melodic detours like “Moon.” Kerrang! named it album of the year, recognising how naturally those different sounds fit together.</p>
+                <a class="record-button listen-link" href="https://music.apple.com/us/album/time-space/1332022638" aria-label="Listen to the album: Time &amp; Space by Turnstile">Listen to the album</a>
+                <p class="sources">Sources: <a href="https://www.theguardian.com/music/2018/feb/23/turnstile-time-space-review-roadrunner">The Guardian: album review</a>; <a href="https://www.kerrang.com/the-50-albums-that-shook-2018/">Kerrang!: albums of the year</a>.</p>
+            </div>
         </section>
-        <section>
-            <h2>Knocked Loose</h2>
-            <p>After making its name with <cite>Laugh Tracks</cite>, this Kentucky band pushed further into metallic hardcore. Its intense live shows and heavy breakdowns helped make that branch of hardcore more visible to metalcore audiences.</p>
-            <p><strong><cite>A Different Shade of Blue</cite> (2019).</strong> The second album uses dissonant guitar parts and sudden changes in pace to build tension before the breakdowns land. It shows how much variety the band could find within a relentlessly heavy sound.</p>
-            <p>Sources: <a href="https://www.kerrang.com/album-review-knocked-loose-a-different-shade-of-blue">Kerrang!: album review</a>; <a href="https://riffmagazine.com/album-reviews/knocked-loose-a-different-shade-of-blue/">RIFF Magazine: album review</a>.</p>
+        <section class="album-section" id="knocked-loose" aria-labelledby="knocked-loose-title">
+            <div class="col-visual">
+                <figure class="album-cover">
+                    <img src="assets/img/knocked-loose-a-different-shade-of-blue.jpg" width="700" height="700" alt="Original album cover for A Different Shade of Blue by Knocked Loose">
+                    <figcaption><a href="https://knockedloose.bandcamp.com/album/a-different-shade-of-blue">Cover source: Knocked Loose on Bandcamp</a></figcaption>
+                </figure>
+            </div>
+            <div class="col-text">
+                <h2 id="knocked-loose-title">Knocked Loose</h2>
+                <p class="album-meta"><cite>A Different Shade of Blue</cite> &middot; <time datetime="2019">2019</time></p>
+                <p>After making its name with <cite>Laugh Tracks</cite>, this Kentucky band pushed further into metallic hardcore. Its intense live shows and heavy breakdowns helped make that branch of hardcore more visible to metalcore audiences.</p>
+                <p>The second album uses dissonant guitar parts and sudden changes in pace to build tension before the breakdowns land. It shows how much variety the band could find within a relentlessly heavy sound.</p>
+                <a class="record-button listen-link" href="https://knockedloose.bandcamp.com/album/a-different-shade-of-blue" aria-label="Listen to the album: A Different Shade of Blue by Knocked Loose">Listen to the album</a>
+                <p class="sources">Sources: <a href="https://www.kerrang.com/album-review-knocked-loose-a-different-shade-of-blue">Kerrang!: album review</a>; <a href="https://riffmagazine.com/album-reviews/knocked-loose-a-different-shade-of-blue/">RIFF Magazine: album review</a>.</p>
+            </div>
         </section>
     </main>
     <footer>
+        <div class="wrap">
+            <span class="label">Pit Notes / 2010–2019</span>
         <nav aria-label="Page navigation">
             <a href="../index.html">Return to Home</a>
             <a href="#top-of-page">Back to top</a>
         </nav>
+        </div>
     </footer>
 </body>
 </html>

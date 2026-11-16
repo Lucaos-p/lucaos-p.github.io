@@ -1,0 +1,47 @@
+from rental_item import RentalItem
+
+
+class Herakit(RentalItem):
+
+    def _init_(self, brand: str, model: str, daily_rate: float) -> None:
+
+        if not isinstance(brand, str) or not brand.strip():
+            raise ValueError("Brand cannot be empty")
+
+        if not isinstance(model, str) or not model.strip():
+            raise ValueError("Model cannot be empty")
+
+        if isinstance(daily_rate, bool) or not isinstance(daily_rate, (int, float)):
+            raise ValueError("Daily rate must be a number")
+
+        if not math.isfinite(daily_rate) or daily_rate < 0:
+            raise ValueError("Daily rate must be a finite, non-negative number.")
+
+        self.brand = brand.strip()
+        self.model = model.strip()
+        self.daily_rate = float(daily_rate)
+        self._booked = False
+
+    @property
+    def booked(self) -> bool:
+        return self._booked
+
+    def display(self) -> None:
+        print("*" * 40)
+        print(f"Brand: {self.brand}")
+        print(f"Model: {self.model}")
+        print(f"Daily rate: €{self.daily_rate:.2f}")
+        print(f"Booked: {self._booked}")
+        print("*" * 40)
+
+    def book(self) -> None:
+        if self._booked:
+            self._booked = False
+            print("Camera kit has been returned")
+        else:
+            self._booked = True
+            print("Camera kit has been booked")
+
+    def is_booked(self) -> bool:
+        return self._booked
+
